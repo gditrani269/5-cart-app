@@ -12,12 +12,16 @@ const initialCartItems = [
 ]
 export const CartApp = () => {
 
+    const [ totalCompra, serTotalCompra] = useState (0);
     //vamos a manejar el estado de los items en el useState cartItems
     const [ cartItems, serCartItems ] = useState (initialCartItems);
 
     //para actualizar el valor del array de productos que se realiza en el componente productCard, usamos la siguiente funcion. Esta recibe lo que se selecciona en productCard y lo almacena en product. Lo que hacemos para que esta funcion se ejecute es ir pasandolas a los componentes hijos
     const handlerAddProductCart = (product) => {
 
+        serTotalCompra (
+            totalCompra + product.price
+        );
         //si un mismo item se selecciona mas de una vez, no se agrega en  cartItems, se incrementa la cantidad del mismo.
         //para detectar si ya habiamos agregamos ese item dentro de cartItems usamos .find
 
@@ -58,6 +62,16 @@ export const CartApp = () => {
 
 //funcion que elimina un item del carro
     const handlerDeleteProductCart = (id) => {
+        //para calcular el total cuando se elimina un item del carrito:
+        //buscamos en cartItems el id a eliminar y guardamos en hashItem el objeto
+        //despues retamos del total el precio por la cantidad de items de ese producto
+        const hashItem = cartItems.find ((i) => i.product.id === id);
+        console.log ("hashItem: " , hashItem)
+        if (hashItem) {
+            serTotalCompra (
+                totalCompra - hashItem.product.price * hashItem.quantity
+            )};
+            
         serCartItems ([
             ...cartItems.filter ( (i) => i.product.id !== id)
         ]);
@@ -75,7 +89,7 @@ export const CartApp = () => {
                 { cartItems?.length <= 0 ||
                     (
                         <div className="my-4 w-50">
-                            <CartView items ={ cartItems } handlerDelete = {handlerDeleteProductCart}/>
+                            <CartView items ={ cartItems } handlerDelete = {handlerDeleteProductCart} total = { totalCompra }/>
                         </div>
                     )} 
 

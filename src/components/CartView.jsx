@@ -1,5 +1,5 @@
 
-export const CartView = ({ handlerDelete, items }) => {
+export const CartView = ({ handlerDelete, items, total }) => {
 
     const OnDeleteProduct = (id) => {
 //        console.log ('eliminando producto')
@@ -35,7 +35,7 @@ export const CartView = ({ handlerDelete, items }) => {
             <tfoot>
                 <tr>
                     <td colSpan="3" className="text-end fw-bold">Total</td>
-                    <td colSpan="2" className="text-end fw-bold">12345</td>
+                    <td colSpan="2" className="text-end fw-bold">{ total }</td>
                 </tr>
             </tfoot>
         </table>
