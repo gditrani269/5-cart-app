@@ -1,5 +1,14 @@
+import { useEffect, useState } from "react";
+import { calculateTotal } from "../services/productsServices";
 
 export const CartView = ({ handlerDelete, items }) => {
+
+    const [ total, setTotal ] = useState (0);
+
+    //este useEffect se va a ejecutar la priemra vez que se ejecute y luego cada vez que haya un cambio en items, eso se le indica al final poniendo items entre []
+    useEffect (() => {
+        setTotal ( calculateTotal (items) );
+    }, [ items])
 
     const OnDeleteProduct = (id) => {
 //        console.log ('eliminando producto')
@@ -35,7 +44,7 @@ export const CartView = ({ handlerDelete, items }) => {
             <tfoot>
                 <tr>
                     <td colSpan="3" className="text-end fw-bold">Total</td>
-                    <td colSpan="2" className="text-end fw-bold">12345</td>
+                    <td colSpan="2" className="text-end fw-bold">{ total }</td>
                 </tr>
             </tfoot>
         </table>
