@@ -8,6 +8,8 @@ export const CartView = ({ handlerDelete, items }) => {
     //este useEffect se va a ejecutar la priemra vez que se ejecute y luego cada vez que haya un cambio en items, eso se le indica al final poniendo items entre []
     useEffect (() => {
         setTotal ( calculateTotal (items) );
+        //guardamos el objeto items en la sesion cada vez que cambia
+        sessionStorage.setItem ('cart', JSON.stringify (items));
     }, [ items])
 
     const OnDeleteProduct = (id) => {

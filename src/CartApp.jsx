@@ -3,13 +3,16 @@ import { CartView } from "./components/CartView"
 import { CatalogView } from "./components/CatalogView"
 
 //defino una estructura inicial de items de productos para inicializar el usestate cartitems
-const initialCartItems = [
-/*    {
+/*const initialCartItems = [
+    {
         product: {},
         quantity: 0,
         total: 0
-    }*/
-]
+    }
+]*/
+//inicializo los items por la sesion. el JSON.parse convierte un string a objeto
+//si se ejecuta por primera vez como la sesion no tiene nada, paraque initialCartItems no quede vacio lo inicializa con []
+const initialCartItems = JSON.parse (sessionStorage.getItem ('cart')) || [];
 export const CartApp = () => {
 
     //vamos a manejar el estado de los items en el useState cartItems
