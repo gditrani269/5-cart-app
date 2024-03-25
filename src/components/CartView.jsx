@@ -9,7 +9,8 @@ export const CartView = ({ handlerDelete, items }) => {
     useEffect (() => {
         setTotal ( calculateTotal (items) );
         //guardamos el objeto items en la sesion cada vez que cambia
-        sessionStorage.setItem ('cart', JSON.stringify (items));
+        //Comentamos el sessionStorage ya que aca hace que se mantenga el ultimo item cuando le damos f5 auqneu lo hayamos eliminado previamente
+        //sessionStorage.setItem ('cart', JSON.stringify (items));
     }, [ items])
 
     const OnDeleteProduct = (id) => {
