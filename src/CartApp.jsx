@@ -3,6 +3,7 @@ import { Routes, Route, Navigate  } from "react-router-dom"
 import { CartView } from "./components/CartView"
 import { CatalogView } from "./components/CatalogView"
 import { useItemsCart } from "./hooks/useItemsCart"
+import { NavBar } from "./components/NavBar"
  
 
 //defino una estructura inicial de items de productos para inicializar el usestate cartitems
@@ -19,7 +20,7 @@ export const CartApp = () => {
     const { cartItems, handlerAddProductCart, handlerDeleteProductCart} = useItemsCart ();
     return (
         <> 
-
+            <NavBar />
             <div className="container my-4">
                 <h3>Cart App</h3>
                 <Routes>
