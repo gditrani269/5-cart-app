@@ -1,10 +1,15 @@
+import { useNavigate } from "react-router-dom";
+
 export const ProductCard = ({handler, id, name, description, price}) => {
+
+    const navigate = useNavigate ();
 
     //esta funcion le debe pasar la info de producto a CatalogView que es el padre.
     const onAddProduct = (product) => {
         console.log (product);
         //aca se emite el product a la funcion que esta en el padre (handlerAddProductCart)
         handler (product);
+        navigate ('/cart');
     }
     return (
         <>

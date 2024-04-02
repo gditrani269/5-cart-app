@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { calculateTotal } from "../services/productsServices";
+import { useNavigate } from "react-router-dom";
 
 export const CartView = ({ handlerDelete, items }) => {
 
     const [ total, setTotal ] = useState (0);
+    const navigate = useNavigate ();
 
     //este useEffect se va a ejecutar la priemra vez que se ejecute y luego cada vez que haya un cambio en items, eso se le indica al final poniendo items entre []
     useEffect (() => {
@@ -16,6 +18,10 @@ export const CartView = ({ handlerDelete, items }) => {
     const OnDeleteProduct = (id) => {
 //        console.log ('eliminando producto')
         handlerDelete (id);
+    }
+
+    const onCatalog = () => {
+        navigate ('/catalog');
     }
   return (
     <div>
@@ -51,6 +57,11 @@ export const CartView = ({ handlerDelete, items }) => {
                 </tr>
             </tfoot>
         </table>
+        <button 
+            className="btn btn-success"
+            onClick={onCatalog}>
+            Seguir Comprando
+        </button>
     </div>
   )
 }

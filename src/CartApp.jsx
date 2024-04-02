@@ -40,7 +40,7 @@ export const CartApp = () => {
                             )
                         )}/>
                     {/*navega por default hacia el catalogo, cuando se carga la pagina por ejemplo. Eso lo hace con le Navigate */}
-                    <Route path="/" elemnt={ <Navigate to={'/catalog'} /> } />
+                    <Route path="/" element={ <Navigate to={'/catalog'} /> } />
                 </Routes>
                 
 
