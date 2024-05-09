@@ -9,10 +9,14 @@ export const CatalogView = ({handler}) => {
 
     const [products, setProducts] = useState ([]); //definimos el usestate para que guarde los valores de los productos y lo inicializamos como un array vacio por medio de []
 
+    const findAll = async () =>  {
+        const prods = await getProducts ();
+        setProducts (prods);
+    }
     //ahora cargamos los valores en "products" llamando a la funcion getProducts 
     useEffect( () => 
         {   
-            setProducts (getProducts);
+            findAll ();
         }, []
     );
 
